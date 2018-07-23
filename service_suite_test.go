@@ -1,4 +1,4 @@
-package service_test
+package third_party_api_double_test
 
 import (
 	. "github.com/onsi/ginkgo"
