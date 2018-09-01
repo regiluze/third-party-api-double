@@ -3,7 +3,7 @@ package third_party_api_double_test
 import (
 	_ "fmt"
 	. "github.com/onsi/ginkgo"
-	_ "github.com/onsi/gomega"
+	. "github.com/onsi/gomega"
 	. "github.com/regiluze/third-party-api-double"
 )
 
@@ -18,9 +18,17 @@ var _ = Describe("Third party API double service specs", func() {
 		service = NewService()
 	})
 
-	Describe("foo", func() {
-		Context("var", func() {
-			It("kk", func() {
+	Describe("Managing request data", func() {
+		Context("when storing a request data", func() {
+			It("stores the request info", func() {
+				data := map[string]string{
+					"data": "foo",
+				}
+				service.Store("path", "method", data)
+
+				Expect(service.Requests[0].Path).To(Equal("path"))
+				Expect(service.Requests[0].Method).To(Equal("method"))
+				Expect(service.Requests[0].Data).To(Equal(data))
 			})
 		})
 	})
