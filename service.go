@@ -1,10 +1,10 @@
 package third_party_api_double
 
-func NewService() *Service {
+func NewRequestHub() *RequestHub {
 
-	service := Service{}
+	requestHub := RequestHub{}
 
-	return &service
+	return &requestHub
 }
 
 func NewRequest(path string, method string, data map[string]string) Request {
@@ -18,12 +18,26 @@ type Request struct {
 	Data   map[string]string
 }
 
-type Service struct {
+type RequestHub struct {
 	Requests []Request
 }
 
-func (service *Service) Store(path string, method string, data map[string]string) {
+func (requestHub *RequestHub) Store(path string, method string, data map[string]string) {
 	request := NewRequest(path, method, data)
-	newRequestSlice := append(service.Requests, request)
-	service.Requests = newRequestSlice
+	newRequestSlice := append(requestHub.Requests, request)
+	requestHub.Requests = newRequestSlice
+}
+
+func (requestHub *RequestHub) Reset() {
+	requestHub.Requests = []Request{}
+}
+
+func (requestHub RequestHub) Find_by_path(path string) []Request {
+	matchRequests := requestHub.Requests[:0]
+	for _, request := range requestHub.Requests {
+		if request.Path == path {
+			matchRequests = append(matchRequests, request)
+		}
+	}
+	return matchRequests
 }
