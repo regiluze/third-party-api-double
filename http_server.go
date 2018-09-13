@@ -14,7 +14,7 @@ func main() {
 	flag.Parse()
 
 	addressAndPort := fmt.Sprintf("%s:%s", *address, *port)
-	log.Println("[http2amqp] Starting HTTP server at ", addressAndPort)
+	log.Println("Starting HTTP server at ", addressAndPort)
 	http.HandleFunc("/kk", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf(">>>>>> hello path: %q method: %q ", html.EscapeString(r.URL.Path), r.Method)
 		for key, value := range r.URL.Query() {
