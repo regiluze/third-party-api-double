@@ -2,7 +2,6 @@
 TODO
 =========
 
-
 spy service
 -----------
 
@@ -14,10 +13,23 @@ spy service
 httpserver
 -----------
 
+What about the path for these commands?
+
+spycommand/reset PUT
+ --->> how to ge body example >> https://gist.github.com/aodin/9493190
+spycommand/verify GET
+
 options for commands
     reset
     request info
 
+When reset the spy it returns the path to verify the calls
+https://stackoverflow.com/questions/3468177/restful-way-to-send-commands
+
+
+
 rest of methods and paths to save calls
 
-think about how to tell the client of the call to manage paralell execution support
+
+
+Don't worry about parallel execution, because the scenario for this kind of test is to run secuencially
